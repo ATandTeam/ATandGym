@@ -11,7 +11,7 @@
 			<nav>
 				<a href="#">Inspírate</a>
 				<a href="#">Galería</a>
-				<a href="#">Contacto</a>
+				<a href="#">Contactation</a>
 				<a class="launch-modal" href="#" data-modal-id="modal-login">Entrar</a>
 			</nav>
 		</div>
