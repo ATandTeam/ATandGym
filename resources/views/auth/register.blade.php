@@ -1,6 +1,10 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('templates.base')
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/form-elements.css') }}">
+@endsection
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -25,6 +25,6 @@ mix.scripts([
 	'resources/assets/css/bootstrap.min.css',
 	'resources/assets/css/toastr.css',
 	'resources/assets/css/app.css',
-	'resources/assets/css/form-elements.css',
+	// 'resources/assets/css/form-elements.css',
 	'resources/assets/css/style.css',
 	], 'public/css/app.css');

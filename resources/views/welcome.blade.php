@@ -1,5 +1,10 @@
 @extends('templates.base')
 @section('titulo','Inicio')
+@section('css')
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/form-elements.css') }}">
+	@endsection
 @section('contenido')
 	<div id="carouselExampleIndicators" class="carousel slide mt-3" data-ride="carousel"
 >		<ol class="carousel-indicators">
@@ -27,4 +32,11 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	@if ($errors->count() > 0)
+		@section('js')
+			<script>
+				swal ( "Error" ,  "No pudimos encontrar un usuario con los datos introducidos, intentalo de nuevo " ,  "error" )
+			</script>
+		@endsection
+	@endif
 @endsection
