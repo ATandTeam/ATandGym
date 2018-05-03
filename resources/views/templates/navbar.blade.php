@@ -50,7 +50,7 @@
                     <div class="form-group">
                     	<label class="sr-only" for="form-password">Contraseña</label>
                     	<input type="password" name="password" placeholder="Contraseña" class="form-password form-control" id="form-password" style="color: white;" value="{{ old('email') }}" required autofocus>
-                    	<a style="color: #717171; margin-top: 10px; display: inline-block; margin-left: 10px;" href="#">Olvidé mi contraseña</a>
+                    	<a style="color: #717171; margin-top: 10px; display: inline-block; margin-left: 10px;" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
                     </div>
                     <div class="form-group row">
                     	<button type="submit" class="btn mt-3">Entrar</button>

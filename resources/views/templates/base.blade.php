@@ -12,6 +12,7 @@
 <body style="background-color: rgb(30,30,30);">
 	@include('templates.navbar')
 	<div id="main" class="container">
+		<br>
 		@yield('contenido')
 	</div>
 	<script src={{ asset('js/jquery-3.2.1.min.js') }}></script>
