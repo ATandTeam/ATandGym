@@ -14,7 +14,8 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        //
+        $grupos = Grupo::all();
+        return view('grupos.ver_IH',compact('grupos'));
     }
 
     /**
@@ -41,10 +42,10 @@ class GrupoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \atandteam\Grupo  $grupo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Grupo $grupo)
+    public function show($id)
     {
         //
     }
@@ -52,10 +53,10 @@ class GrupoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \atandteam\Grupo  $grupo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Grupo $grupo)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +65,10 @@ class GrupoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \atandteam\Grupo  $grupo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grupo $grupo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +76,10 @@ class GrupoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \atandteam\Grupo  $grupo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Grupo $grupo)
+    public function destroy($id)
     {
         //
     }
