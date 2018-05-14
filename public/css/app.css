@@ -35,7 +35,7 @@ body{
 header{
 	width: 100%;
 	height: auto;
-	background: black;
+	background: #6e0275;
 }
 .header-left,
 .header-right{
@@ -60,7 +60,7 @@ header{
 	-webkit-transition: all .3s ease;
 }
 .header-right span:hover{
-	background: rgba(255,255,255,.6);
+	background: #a803b3;
 }
 .header-right span:before,
 .header-right span:after{
@@ -83,7 +83,6 @@ header{
 	display: none;
 }
 h1{
-	font-weight: 300;
 	line-height: 40px;
 }
 a{
@@ -93,14 +92,14 @@ a{
 nav>a{
 	position: relative;
 	display: inline-block;
-	font-size: 15px;
+	font-size: 20px;
 	line-height: 45px;
 	padding: 0 2em;
 	-webkit-transition: all .3s ease;
 }
 nav>a:hover{
-	background: rgba(255,255,255,.9);
-	color: black;
+	background: #924b9e;
+	color: white;
 }
 .hidden-desktop{
 	display: none;

@@ -9,7 +9,7 @@
 	@yield('css')
 	<title>@yield('titulo', 'AT&Team')</title>
 </head>
-<body style="background-color: rgb(30,30,30);">
+<body>
 	@include('templates.navbar')
 	<div id="main" class="container">
 		<br>
@@ -24,6 +24,8 @@
 	<script src={{ asset('js/jquery.backstretch.min.js') }}></script>
 	<script src={{ asset('js/scripts.js') }}></script>
 	<script src={{ asset('js/sweetalert.min.js') }}></script>
+	<script src="{{asset('js/app.js')}}"></script>
+
 	@yield('js')
 	@include('templates.footer')
 </body>

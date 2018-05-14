@@ -32,4 +32,11 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function alumna(){
+        return $this->belongsTo(Alumna::class);
+    }
+    public function administradora(){
+        return $this->belongsTo(Administradora::class);
+    }
 }

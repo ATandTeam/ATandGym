@@ -9,9 +9,6 @@
 			</label>
 			<input type="checkbox" name="" id="open">
 			<nav>
-				<a href="#">Inspírate</a>
-				<a href="#">Galería</a>
-				<a href="#">Contactation</a>
 				@if (!Auth::check())
 					<a class="launch-modal" href="#" data-modal-id="modal-login">Entrar</a>
 					@else
@@ -45,19 +42,19 @@
                 	@csrf
                 	<div class="form-group">
                 		<label class="sr-only" for="form-username">Usuario</label>
-                    	<input type="text" name="username" placeholder="Usuario" class="form-username form-control" style="color: white;" id="form-username">
+                    	<input type="text" name="username" placeholder="Usuario" class="form-username form-control" id="form-username">
                     </div>
                     <div class="form-group">
                     	<label class="sr-only" for="form-password">Contraseña</label>
-                    	<input type="password" name="password" placeholder="Contraseña" class="form-password form-control" id="form-password" style="color: white;" value="{{ old('email') }}" required autofocus>
-                    	<a style="color: #717171; margin-top: 10px; display: inline-block; margin-left: 10px;" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+                    	<input type="password" name="password" placeholder="Contraseña" class="form-password form-control" id="form-password" value="{{ old('email') }}" required autofocus>
+                    	<a style="color: #717171; margin-top: 10px; display: inline-block; font-size: 16px;" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
                     </div>
                     <div class="form-group row">
                     	<button type="submit" class="btn mt-3">Entrar</button>
                     	<div class="mt-3 col-12">
-                    		<div class="bg-white" style="height: 2px;"></div>
+                    		<div class="bg-white" style="height: 2px; background-color:#777777 !important;"></div>
                     		<br>
-                    		<h4 class="text-white mt-4">¿No tienes cuenta?</h4>
+                    		<h4 class="text-white mt-4" style="color: #777777 !important;">¿No tienes cuenta?</h4>
                     		<a class="btn btn-primary col-12" href="{{ route('register') }}">Regístrate</a>
                     	</div>
                     </div>
