@@ -2,6 +2,7 @@
 
 namespace atandteam\Http\Controllers\Auth;
 
+use atandteam\Alumna;
 use atandteam\User;
 use atandteam\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -54,6 +55,8 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
+
+
     }
 
     /**
@@ -64,11 +67,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //TODO: Creación de una alumna.
+        dd($data);
+        $alumna = new Alumna;
+        $alumna->nombre = $data['name'];
+        $alumna->aPaterno = $data['aPaterno'];
+        $alumna->aMaterno = $data['aMaterno'];
+        dd($alumna);
+
+
+
+
+
         return User::create([
             'name' => $data['name'],
             'username'=>$data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
         ]);
     }
 }
