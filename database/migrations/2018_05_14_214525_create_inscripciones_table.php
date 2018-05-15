@@ -15,11 +15,21 @@ class CreateInscripcionesTable extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('alumna_id');
-            $table->integer('grupo_id');
+            $table->unsignedInteger('alumna_id');
+            $table->unsignedInteger('grupo_id');
             $table->date('fecha');
             $table->string('status');
             $table->timestamps();
+
+            $table->foreign('alumna_id')
+                ->references('id')
+                ->on('alumnas')
+                ->onDelete('cascade');
+
+            $table->foreign('grupo_id')
+                ->references('id')
+                ->on('grupos')
+                ->onDelete('cascade');
         });
     }
 
