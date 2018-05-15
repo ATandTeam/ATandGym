@@ -4,6 +4,8 @@ namespace atandteam\Http\Controllers;
 
 use atandteam\Grupo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rule;
 
 class GrupoController extends Controller
 {
@@ -14,7 +16,7 @@ class GrupoController extends Controller
      */
     public function index()
     {
-        $grupos = Grupo::all();
+        $grupos = Grupo::orderBy("hora")->get();
         return view('grupos.ver_IH',compact('grupos'));
     }
 
@@ -25,18 +27,35 @@ class GrupoController extends Controller
      */
     public function create()
     {
-        //
+        return view('grupos.crear_IH');
     }
 
+    public function store(Request $request)
+    {
+        $this->validar($request);
+        $mismoCupo = Grupo::where('hora',$request->hora)->first();
+        if ($mismoCupo != null)
+            return back()->withInput(Input::all())->withErrors("Existe un grupo a la misma hora");
+        Grupo::create($request->all())->save();
+        return redirect(route('grupos.index'));
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+
+    /**
+     * valida los datos del grupo
+     * @param Request $request
+     */
+    private function validar(Request $request){
+        $request->validate([
+            "hora" => "date_format:H:i",
+            "cupo" => "numeric|max:99|min:1",
+            "turno" => Rule::in(['matutino', 'vespertino'])
+        ]);
     }
 
     /**
@@ -58,7 +77,9 @@ class GrupoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $grupo = Grupo::find($id);
+
+        return view('grupos.editar_IH',compact('grupo'));
     }
 
     /**
@@ -70,7 +91,13 @@ class GrupoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $grupo = Grupo::find($id);
+        $this->validar($request);
+        $grupo->hora = $request->hora;
+        $grupo->cupo = $request->cupo;
+        $grupo->turno = $request->turno;
+        $grupo->save();
+        return redirect(route('grupos.index'));
     }
 
     /**
@@ -81,6 +108,7 @@ class GrupoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Grupo::find($id)->delete();
+        return redirect(route('grupos.index'));
     }
 }

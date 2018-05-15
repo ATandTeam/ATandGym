@@ -21,6 +21,7 @@ Route::Resource('inscripciones', 'inscripcionesController');
 
 //JAVIER
 Route::Resource('grupos', 'GrupoController');
+//Route::
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
