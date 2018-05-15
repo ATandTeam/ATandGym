@@ -2,10 +2,10 @@
 
 namespace atandteam\Http\Controllers;
 
-use atandteam\Alumna;
+use atandteam\Grupo;
 use Illuminate\Http\Request;
 
-class AlumnaController extends Controller
+class InscripcionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class AlumnaController extends Controller
      */
     public function index()
     {
-        $alumnas = Alumna::all();
-        return view('alumnas.mostrar_IH',compact('alumnas'));
+        $grupos = Grupo::all();
+        return view('inscripciones.inscripcion_IH', compact('grupos'));
+
     }
 
     /**
@@ -25,7 +26,6 @@ class AlumnaController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -42,10 +42,10 @@ class AlumnaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \atandteam\Alumna  $alumna
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Alumna $alumna)
+    public function show($id)
     {
         //
     }
@@ -53,22 +53,22 @@ class AlumnaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \atandteam\Alumna  $alumna
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alumna $alumna)
+    public function edit($id)
     {
-
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \atandteam\Alumna  $alumna
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumna $alumna)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +76,10 @@ class AlumnaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \atandteam\Alumna  $alumna
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Alumna $alumna)
+    public function destroy($id)
     {
         //
     }

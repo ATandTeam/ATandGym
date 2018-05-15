@@ -1,5 +1,6 @@
     @extends('templates.base')
     @section('titulo','Inicio')
+
     @section('contenido')
         <div id="carouselExampleIndicators" class="carousel slide mt-3" data-ride="carousel">
             <ol class="carousel-indicators">
