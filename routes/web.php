@@ -23,6 +23,7 @@ Route::Resource('inscripciones', 'inscripcionesController'); // registra 6 rutas
 
 //JAVIER
 Route::Resource('grupos', 'GrupoController');
+//Route::
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -38,3 +39,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 // termina AUTH
+Route::get('datospersonales/{id}','AlumnaController@show')->name('datospersonales');
+Route::get('modificardatospersonales/{id}','AlumnaController@edit')->name('modificardatospersonales');
+Route::post('actualizardatospersonales/{idAlumna}','AlumnaController@update')->name('actualizardatospersonales');

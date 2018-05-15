@@ -1,7 +1,7 @@
 <?php
 
 namespace atandteam\Http\Controllers\Auth;
-
+use DB;
 use atandteam\Alumna;
 use atandteam\User;
 use atandteam\Http\Controllers\Controller;
@@ -68,23 +68,30 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //TODO: Creación de una alumna.
-        dd($data);
+        $usuario = new User;
         $alumna = new Alumna;
-        $alumna->nombre = $data['name'];
-        $alumna->aPaterno = $data['aPaterno'];
-        $alumna->aMaterno = $data['aMaterno'];
-        dd($alumna);
-
-
-
-
-
-        return User::create([
-            'name' => $data['name'],
-            'username'=>$data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-
-        ]);
+        DB::beginTransaction();
+        try{
+            $usuario->username = $data['username'];
+            $usuario->email = $data['email'];
+            $usuario->password = Hash::make($data['password']);
+            $usuario->save();
+            $alumna->nombre = $data['name'];
+            $alumna->aPaterno = $data['apellido_paterno'];
+            $alumna->aMaterno = $data['apellido_materno'];
+            $alumna->direccion = $data['direccion'];
+            $alumna->telefono = $data['telefono'];
+            $alumna->fechaNacimiento = $data['fecha_nacimiento'];
+            $alumna->colonia= $data['ciudad'];
+            $alumna->estado= $data['estado'];
+            $alumna->profesion= $data['profesion'];
+            $alumna->ciudad= $data['ciudad'];
+            $alumna->user_id = $usuario->id;
+            $alumna->save();
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+        }
+        return $usuario;
     }
 }

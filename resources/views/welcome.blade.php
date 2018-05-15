@@ -1,3 +1,4 @@
+
     @extends('templates.base')
     @section('titulo','Inicio')
 
@@ -27,6 +28,11 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+        </div>
+        <div  class="form-group row">
+            @if(Auth::check())
+                <a class="btn btn-success" href="{{route('datospersonales',Auth::user()->id)}}">Ver datos personales</a>
+            @endif
         </div>
         @section('js')
             @if (!Auth::check() && $errors->count() > 0)
