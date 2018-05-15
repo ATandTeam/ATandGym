@@ -17,7 +17,9 @@ Route::get('/', function () {
 // comienzan rutas AUTH (autentificación de laravel)
 
 //erika
-Route::Resource('inscripciones', 'inscripcionesController');
+Route::get('Antecedentes/grupo/{id}', 'inscripcionesController@guardarGrupo')->name('guardarGrupo');
+Route::Resource('inscripciones', 'inscripcionesController'); // registra 6 rutas
+//Route::get()
 
 //JAVIER
 Route::Resource('grupos', 'GrupoController');

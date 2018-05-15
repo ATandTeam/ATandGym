@@ -2,8 +2,13 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Antecedentes_alumna;
 use atandteam\Grupo;
+use atandteam\Inscripcion;
 use Illuminate\Http\Request;
+use atandteam\antecedentes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InscripcionesController extends Controller
 {
@@ -17,6 +22,12 @@ class InscripcionesController extends Controller
         $grupos = Grupo::all();
         return view('inscripciones.inscripcion_IH', compact('grupos'));
 
+    }
+
+    public function guardarGrupo($id)
+    {
+        session()->put('grupo', $id);
+        return view('inscripciones.antecedentes_IH');
     }
 
     /**
@@ -36,7 +47,47 @@ class InscripcionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try{
+            //crear antecedentes
+            Antecedentes::create(
+                [
+                    'ejercicioAnterior' => $request->ejercicio_anterior,
+                    'porqueEjercicio' => $request->porque_ejercicio,
+                    'tieneLesion' => $request->tiene_lesion,
+                    'algunaDieta' => $request->alguna_dieta,
+                    'tomaAgua' => $request->toma_agua,
+                    'problemas' => $request->problemas
+                ]
+            )->save();
+
+            $antecedenteId = Antecedentes::all()->max('id');
+            Antecedentes_alumna::create(
+                [
+                    'antecedente_id' => $antecedenteId,
+                    'alumna_id' => Auth::user()->id
+                ]
+            )->save();
+
+            Inscripcion::create(
+                [
+                    'alumna_id' => Auth::user()->id,
+                    'grupo_id' => session()->get('grupo'),
+                    'fecha' => date('Y/m/d'),
+                    'status' => 'solicitado'
+                ]
+            )->save();
+
+            DB::commit();
+            // asignando el antecedente a la alumna logueada
+
+        }
+        catch (\Exception $e){
+            dd($e->getMessage());
+            DB::rollBack();
+        }
+
+        return redirect(route('welcome'));
     }
 
     /**
