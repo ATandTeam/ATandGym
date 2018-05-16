@@ -2,7 +2,9 @@
 
 namespace atandteam\Http\Controllers;
 
+use DB;
 use atandteam\Alumna;
+use atandteam\User;
 use Illuminate\Http\Request;
 
 class AlumnaController extends Controller
@@ -45,9 +47,11 @@ class AlumnaController extends Controller
      * @param  \atandteam\Alumna  $alumna
      * @return \Illuminate\Http\Response
      */
-    public function show(Alumna $alumna)
+    public function show($idUsuario)
     {
-        //
+        $alumna = Alumna::where('user_id','=',$idUsuario)->first();
+        $usuario = User::where('id','=',$alumna->user_id)->first();
+        return view ('alumnas.mostrar_IH',['alumna' => $alumna,'usuario'=>$usuario]);
     }
 
     /**
@@ -56,9 +60,11 @@ class AlumnaController extends Controller
      * @param  \atandteam\Alumna  $alumna
      * @return \Illuminate\Http\Response
      */
-    public function edit(Alumna $alumna)
+    public function edit($idAlumna)
     {
-
+        $alumna = Alumna::find($idAlumna);
+        $usuario = User::where('id','=',$alumna->user_id)->first();
+        return view('alumnas.modificar_datos_personales_IH',['alumna'=>$alumna,'usuario'=>$usuario]);
     }
 
     /**
@@ -68,9 +74,30 @@ class AlumnaController extends Controller
      * @param  \atandteam\Alumna  $alumna
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Alumna $alumna)
+    public function update(Request $request, Alumna $alumna,$idAlumna)
     {
-        //
+        $alumna = Alumna::find($idAlumna);
+        DB::beginTransaction();
+        try {
+            $alumna->nombre = $request->name;
+            $alumna->aPaterno = $request->apellido_paterno;
+            $alumna->aMaterno = $request->apellido_materno;
+            $alumna->direccion = $request->direccion;
+            $alumna->telefono = $request->telefono;
+            $alumna->fechaNacimiento = $request->fecha_nacimiento;
+            $alumna->colonia = $request->colonia;
+            $alumna->ciudad = $request->ciudad;
+            $alumna->estado = $request->estado;
+            $alumna->profesion = $request->profesion;
+            $alumna->save();
+            DB::commit();
+            return $this->show($alumna->user_id);
+        }catch(\Exception $e){
+
+            DB::rollBack();
+            dd($e);
+            return $this->show($alumna->user_id);
+        }
     }
 
     /**

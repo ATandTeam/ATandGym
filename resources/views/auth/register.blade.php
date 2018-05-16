@@ -32,22 +32,6 @@
                             </div>
                         </div>
 
-
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
 
@@ -88,7 +72,7 @@
                             <label for="aPaterno" class="col-md-4 col-form-label text-md-right">Apellido Paterno</label>
 
                             <div class="col-md-6">
-                                <input id="aPaterno" type="text" class="form-control" name="aPaterno" required>
+                                <input id="aPaterno" type="text" class="form-control" name="apellido_paterno" required>
                             </div>
                         </div>
 
@@ -96,7 +80,21 @@
                             <label for="aMaterno" class="col-md-4 col-form-label text-md-right">Apellido Materno</label>
 
                             <div class="col-md-6">
-                                <input id="aMaterno" type="text" class="form-control" name="aMaterno" required>
+                                <input id="aMaterno" type="text" class="form-control" name="apellido_materno" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Correo electrónico</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -117,10 +115,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="cumpleanios" class="col-md-4 col-form-label text-md-right">Cumpleaños</label>
+                            <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">Cumpleaños</label>
 
                             <div class="col-md-6">
-                                <input id="cumpleanios" type="text" class="form-control" name="cumpleanios" required>
+                                <input id="fecha_nacimiento" type="text" class="form-control" name="fecha_nacimiento" required>
                             </div>
                         </div>
 
@@ -156,7 +154,7 @@
                             <label for="profesion" class="col-md-4 col-form-label text-md-right">Profesion</label>
 
                             <div class="col-md-6">
-                                <input id="Profesion" type="text" class="form-control" name="Profesion" required>
+                                <input id="profesion" type="text" class="form-control" name="profesion" required>
                             </div>
                         </div>
 

@@ -36,3 +36,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
 // termina AUTH
+Route::get('datospersonales/{id}','AlumnaController@show')->name('datospersonales');
+Route::get('modificardatospersonales/{id}','AlumnaController@edit')->name('modificardatospersonales');
+Route::post('actualizardatospersonales/{idAlumna}','AlumnaController@update')->name('actualizardatospersonales');
