@@ -32,7 +32,7 @@ return [
     'boolean'              => 'El campo :attribute debe ser verdadero o falso.',
     'confirmed'            => 'El campo confirmación de :attribute no coincide.',
     'date'                 => 'El campo :attribute no corresponde con una fecha válida.',
-    'date_format'          => 'El campo :attribute no corresponde con el formato de fecha :format.',
+    'date_format'          => 'El campo :attribute no corresponde con el formato.',
     'different'            => 'Los campos :attribute y :other deben ser diferentes.',
     'digits'               => 'El campo :attribute debe ser un número de :digits dígitos.',
     'digits_between'       => 'El campo :attribute debe contener entre :min y :max dígitos.',
