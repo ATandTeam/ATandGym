@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alumna extends Model
 {
-    public function inscripcion(){
-        return $this->hasOne(Inscripcion::class);
+    public function antecedente(){
+        return $this->hasOne(Antecedentes::class,'alumna_id','id');
     }
 
     public function user(){

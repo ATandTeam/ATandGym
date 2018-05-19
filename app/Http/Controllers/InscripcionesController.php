@@ -2,6 +2,7 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Alumna;
 use atandteam\Antecedentes_alumna;
 use atandteam\Grupo;
 use atandteam\Inscripcion;
@@ -32,11 +33,12 @@ class InscripcionesController extends Controller
 
     public function verAntecedentes($id)
     {
-        $antecedente = Antecedentes::find($id);
-        $nombreAlumna = $antecedente->alumna->nombre;
+        $alumna = Alumna::find($id);
+        $antecedente = $alumna->antecedente;
+//        dd($antecedente);
         return view('inscripciones.ver_antecedente_IH',[
             'antecedente' => $antecedente,
-            'nombreAlumna' => $nombreAlumna
+            'nombreAlumna' => $alumna->nombre
         ]);
     }
 

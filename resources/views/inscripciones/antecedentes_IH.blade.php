@@ -1,5 +1,5 @@
 @extends('templates.base')
-@section('titulo', 'Preinscripción')
+@section('titulo', 'Antecedentes: Salud y Fisica')
 @section('contenido')
     <div class="row">
         <div class="col col-2"></div>

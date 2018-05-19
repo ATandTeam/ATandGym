@@ -1,5 +1,5 @@
 @extends('templates.base')
-@section('titulo', 'Preinscripción')
+@section('titulo', 'Antecedentes')
 @section('contenido')
 
 <h1>Inscribite a un grupo </h1>
