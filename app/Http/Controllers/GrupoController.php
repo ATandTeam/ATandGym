@@ -53,8 +53,7 @@ class GrupoController extends Controller
     private function validar(Request $request){
         $request->validate([
             "hora" => "date_format:H:i",
-            "cupo" => "numeric|max:99|min:1",
-            "turno" => Rule::in(['matutino', 'vespertino'])
+            "cupo" => "numeric|max:99|min:1"
         ]);
     }
 

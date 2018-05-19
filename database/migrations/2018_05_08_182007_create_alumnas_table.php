@@ -19,7 +19,7 @@ class CreateAlumnasTable extends Migration
             $table->string("aPaterno",50);
             $table->string("aMaterno",50)->nullable();
             $table->string("direccion",150);
-            $table->char("telefono",150);
+            $table->char("telefono",10);
             $table->date("fechaNacimiento");
             $table->string("colonia",50);
             $table->string("ciudad",50);

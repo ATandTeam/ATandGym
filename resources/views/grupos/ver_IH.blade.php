@@ -2,7 +2,9 @@
 @section('titulo','Ver Grupos')
 @section('contenido')
     <h1>Grupos</h1>
-    <a class="btn btn-primary" href="{{route('grupos.create')}}">Crear</a>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary pl-3 pr-3" href="{{route('grupos.create')}}">Crear</a>
+    </div>
     <div class="row mt-3">
         @foreach($grupos as $grupo)
             <div class="col-sm-6">
@@ -10,7 +12,6 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong>hora: </strong>{{ substr($grupo->hora,0,5) }}</h5>
                         <p class="card-text"><strong>cupo: </strong> {{ $grupo->cupo }}</p>
-                        <p class="card-text"><strong>turno: </strong> {{ $grupo->turno }}</p>
 
                         <form action="{{route('grupos.destroy',$grupo->id)}}" method="post" id="frm-eliminar{{$grupo->id}}">
                             {{ method_field('DELETE') }}
@@ -38,10 +39,6 @@
                     .then((willDelete) => {
                         if (willDelete) {
                             document.getElementById('frm-eliminar'+id.toString()).submit();
-                        } else {
-                            swal("Cancelado!", {
-                                icon: "success",
-                            });
                         }
                     });
             }

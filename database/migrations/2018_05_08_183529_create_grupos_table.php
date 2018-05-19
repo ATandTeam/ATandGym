@@ -17,7 +17,6 @@ class CreateGruposTable extends Migration
             $table->increments('id');
             $table->time('hora');
             $table->integer('cupo');
-            $table->string('turno');
             $table->timestamps();
 
         });

@@ -36,3 +36,21 @@ window.addEventListener('load', function() {
     window.addEventListener('online',  updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
 });
+
+$(document).ready(function() {
+    //http://igorescobar.github.io/jQuery-Mask-Plugin/docs.html
+    $(".fecha").attr("placeholder", "dd/mm/yyy");
+    $(".fecha").mask('00/00/0000');
+    //Para manejar fechas de nacimiento. (Sin horas, minutos ni seg.)
+
+    $(".hora").attr("placeholder", "hh:mm");
+    $(".hora").mask('00:00');
+
+    $(".cupo").attr("placeholder", "88");
+    $(".cupo").mask('00');
+
+    $(".telefono").attr("placeholder","(888) 888 88 88");
+    $(".telefono").mask('(000) 000 00 00');
+
+
+});

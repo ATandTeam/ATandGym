@@ -47,11 +47,20 @@ class InscripcionesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ejercicio_anterior' => 'required|min:2',
+            'porque_ejercicio'   => 'required|min:2',
+            'tiene_lesion'   => 'required|min:2',
+            'alguna_dieta'   => 'required|min:2',
+            'toma_agua'  => 'required|min:2',
+            'problemas' => 'required|min:2'
+        ]);
         DB::beginTransaction();
         try{
             //crear antecedentes
             Antecedentes::create(
                 [
+                	'alumna_id' => Auth::user()->alumna->id,
                     'ejercicioAnterior' => $request->ejercicio_anterior,
                     'porqueEjercicio' => $request->porque_ejercicio,
                     'tieneLesion' => $request->tiene_lesion,
@@ -62,16 +71,18 @@ class InscripcionesController extends Controller
             )->save();
 
             $antecedenteId = Antecedentes::all()->max('id');
-            Antecedentes_alumna::create(
-                [
-                    'antecedente_id' => $antecedenteId,
-                    'alumna_id' => Auth::user()->id
-                ]
-            )->save();
+            // dd(Antecedentes::all()->max('id'));
+            // dd(Auth()->user()->alumna);
+            // Antecedentes_alumna::create(
+            //     [
+            //         'antecedente_id' => $antecedenteId,
+            //         'alumna_id' => Auth::user()->alumna->id
+            //     ]
+            // )->save();
 
             Inscripcion::create(
                 [
-                    'alumna_id' => Auth::user()->id,
+                    'alumna_id' => Auth::user()->alumna->id,
                     'grupo_id' => session()->get('grupo'),
                     'fecha' => date('Y/m/d'),
                     'status' => 'solicitado'

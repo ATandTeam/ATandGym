@@ -42,4 +42,19 @@
 
         </div>
     </div>
-    @endsection
+@section('js')
+    @if($errors->count() > 0)
+        @php
+            $errores = '';
+        @endphp
+        @foreach($errors->all() as $error)
+            @php
+                $errores.=$error.'\n';
+            @endphp
+        @endforeach
+        <script>
+            swal("Ups hay un problema :(",""+"{{$errores}}", "error");
+        </script>
+    @endif
+@endsection
+@endsection

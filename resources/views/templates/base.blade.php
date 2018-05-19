@@ -27,6 +27,7 @@
 	<script src={{ asset('js/jquery.backstretch.min.js') }}></script>
 	<script src={{ asset('js/scripts.js') }}></script>
 	<script src={{ asset('js/sweetalert.min.js') }}></script>
+	<script src={{ asset('js/jquery.mask.min.js') }}></script>
 	<script src="{{asset('js/app.js')}}"></script>
 
 	@yield('js')

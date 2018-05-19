@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAntecedentesAlumnasTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,19 @@ class CreateAntecedentesAlumnasTable extends Migration
      */
     public function up()
     {
-        Schema::create('antecedentes_alumnas', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('antecedente_id');
-            $table->unsignedInteger('alumna_id');
-
-            $table->foreign('antecedente_id')
-                ->references('id')
-                ->on('antecedentes')
-                ->onDelete('cascade');
+            $table->unsignedInteger('alumna_id')->unique();
+            $table->string('email')->unique();
+            $table->string("username",60);
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
 
             $table->foreign('alumna_id')
                 ->references('id')
                 ->on('alumnas')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
@@ -38,6 +36,6 @@ class CreateAntecedentesAlumnasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('antecedentes_alumnas');
+        Schema::dropIfExists('users');
     }
 }
