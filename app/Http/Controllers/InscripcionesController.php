@@ -30,6 +30,23 @@ class InscripcionesController extends Controller
         return view('inscripciones.antecedentes_IH');
     }
 
+    public function verAntecedentes($id)
+    {
+        $antecedente = Antecedentes::find($id);
+        $nombreAlumna = $antecedente->alumna->nombre;
+        return view('inscripciones.ver_antecedente_IH',[
+            'antecedente' => $antecedente,
+            'nombreAlumna' => $nombreAlumna
+        ]);
+    }
+
+    public function confirmarInscripciones()
+    {
+        $inscripciones = Inscripcion::where('status','solicitado')->get();
+        $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
+        return view('administradora.confirmar_IH',compact('inscripciones'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -121,6 +138,17 @@ class InscripcionesController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function cambiarStatus($id)
+    {
+        $inscripcion = Inscripcion::find($id);
+        $inscripcion->status = 'aprobado';
+        $inscripcion->save();
+
+        $inscripciones = Inscripcion::where('status','solicitado')->get();
+        $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
+        return view('administradora.confirmar_IH',compact('inscripciones'));
     }
 
     /**
