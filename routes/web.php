@@ -19,6 +19,9 @@ Route::get('/', function () {
 //erika
 Route::get('Antecedentes/grupo/{id}', 'inscripcionesController@guardarGrupo')->name('guardarGrupo');
 Route::Resource('inscripciones', 'inscripcionesController'); // registra 6 rutas
+Route::get('verantecedentes/{id}','InscripcionesController@verAntecedentes')->name('verAntecedentes');
+Route::get('confirmarinscripciones','InscripcionesController@confirmarInscripciones')->name('confirmarInscripciones');
+Route::get('cambiarestatus/{id}','InscripcionesController@cambiarStatus')->name('cambiarStatus');
 //Route::get()
 
 //JAVIER

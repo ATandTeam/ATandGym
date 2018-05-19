@@ -9,8 +9,8 @@ class Inscripcion extends Model
     protected $table = 'inscripciones';
     protected $fillable = ['alumna_id','grupo_id','fecha','status'];
 
-    public function alumna(){
-        return $this->belongsTo(Alumna::class);
+    public function antecedente(){
+        return $this->belongsTo(Antecedentes::class,'alumna_id');
     }
 
     public function grupo(){
