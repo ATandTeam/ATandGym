@@ -29,8 +29,9 @@
         @endforeach
         </tbody>
     </table>
-
-
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-secondary" href="{{route('home')}}">Regresar</a>
+    </div>
 
 @endsection
 

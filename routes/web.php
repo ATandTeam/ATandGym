@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('/','welcome')->name('welcome');
+Route::get('/',function (){
+    if (Auth::check())
+        return redirect(route('home'));
+    return view('welcome');
+})->name('welcome');
+
 Route::middleware(['checkLogin'])->group(function () {
 
     // comienzan rutas AUTH (autentificación de laravel)

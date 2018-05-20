@@ -2,7 +2,9 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Inscripcion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = Auth::user()->id;
+        if ($userId != 9999999){      // si no es la administradora
+            $rol = Inscripcion::where('alumna_id',$userId)->first();
+            return view('home')->with('rol',$rol);
+        }
+        return view('home')->with('rol','admin');
     }
 }
