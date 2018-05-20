@@ -2,6 +2,7 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Inscripcion;
 use DB;
 use atandteam\Alumna;
 use atandteam\User;
@@ -17,8 +18,8 @@ class AlumnaController extends Controller
 
     public function index()
     {
-        $alumnas = Alumna::all();
-        return view('alumnas.mostrar_IH',compact('alumnas'));
+        $inscripciones = Inscripcion::where('status','aprobado')->get();
+        return view('administradora.ver_alumnas_IH',compact('inscripciones'));
     }
 
     /**
@@ -109,6 +110,7 @@ class AlumnaController extends Controller
      */
     public function destroy(Alumna $alumna)
     {
-        //
+        $alumna->delete();
+        return redirect(route('veralumnasinscritas'));
     }
 }

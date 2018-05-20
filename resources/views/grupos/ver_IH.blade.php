@@ -17,7 +17,7 @@
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             {{-- <input class="btn btn-danger" value="Eliminar" type="submit"> --}}
-                            <input class="btn btn-danger" type="button" value="Eliminar" onclick="eliminar({{ $grupo->id }})">
+                            <input class="btn btn-danger" type="button" value="Borrar" onclick="eliminar({{ $grupo->id }})">
                             <a href="{{route('grupos.edit',$grupo->id)}}" class="btn btn-primary">Editar</a>
                         </form>
                     </div>
@@ -33,7 +33,7 @@
                     title: "¿Eliminar?",
                     text: "¿Seguro que desea eliminar este grupo? ¡Se eliminarán todas las inscripciones de este grupo!",
                     icon: "warning",
-                    buttons: true,
+                    buttons: ['Cancelar','Sí, eliminar'],
                     dangerMode: true,
                 })
                     .then((willDelete) => {

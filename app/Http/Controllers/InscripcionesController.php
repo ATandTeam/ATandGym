@@ -76,7 +76,6 @@ class InscripcionesController extends Controller
         ]);
         DB::beginTransaction();
         try{
-            //crear antecedentes
             Antecedentes::create(
                 [
                 	'alumna_id' => Auth::user()->alumna->id,
@@ -148,9 +147,7 @@ class InscripcionesController extends Controller
         $inscripcion->status = 'aprobado';
         $inscripcion->save();
 
-        $inscripciones = Inscripcion::where('status','solicitado')->get();
-        $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
-        return view('administradora.confirmar_IH',compact('inscripciones'));
+        return redirect(route('confirmarInscripciones'));
     }
 
     /**
@@ -173,6 +170,5 @@ class InscripcionesController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

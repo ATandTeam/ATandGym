@@ -34,16 +34,19 @@
                 <a class="btn btn-success" href="{{route('datospersonales',Auth::user()->id)}}">Ver datos personales</a>
             @endif
         </div>
-        @section('js')
-            @if (!Auth::check() && $errors->count() > 0)
-                <script>
-                    swal ( "Error" ,  "No pudimos encontrar un usuario con los datos introducidos. Inténtalo de nuevo " ,  "error" )
-                </script>
-            @endif
-            @if (Auth::check() && $errors->count() == 0)
-                <script>
-                    swal ( "Ok" ,  "Inicio de sesión completo " ,  "success" )
-                </script>
-            @endif
-        @endsection
+        @if($errors->count() > 0)
+    @section('js')
+        @php
+            $errores = '';
+        @endphp
+        @foreach($errors->all() as $error)
+            @php
+                $errores.=$error.'\n';
+            @endphp
+        @endforeach
+        <script>
+            swal("Inicia sesión por favor",""+"{{$errores}}", "error");
+        </script>
+    @endsection
+    @endif
     @endsection
