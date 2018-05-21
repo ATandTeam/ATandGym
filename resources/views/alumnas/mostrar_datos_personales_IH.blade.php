@@ -13,7 +13,7 @@
                     <div class="card-header">Datos personales</div>
 
                     <div class="card-body">
-                        <form method="GET" action="{{ route('modificardatospersonales',$alumna->id) }}">
+                        <form method="GET" action="{{ route('editardatospersonales',$alumna->id) }}">
                             @csrf
 
                             <div class="form-group row">
@@ -69,7 +69,7 @@
                                 <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-right">Cumpleaños</label>
 
                                 <div class="col-md-6">
-                                    <input readonly id="fechaNacimiento" type="text" class="form-control" name="fechaNacimiento" value="{{$alumna->fechaNacimiento}}" required>
+                                    <input readonly id="fechaNacimiento" type="text" class="form-control " name="fechaNacimiento" value="{{$alumna->fechaNacimiento}}" required>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@
                                 <div class="col-md-6 offset-md-4">    
                                     <a href="{{ route('home') }}" class="btn btn-primary">Regresar</a>                          
                                     <button type="submit" class="btn btn-primary">
-                                        Modificar
+                                        Editar
                                     </button>
                                 </div>
                             </div>

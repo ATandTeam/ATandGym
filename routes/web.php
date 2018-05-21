@@ -38,7 +38,7 @@ Route::middleware(['checkLogin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('datospersonales/{id}','AlumnaController@show')->name('datospersonales');
-    Route::get('modificardatospersonales/{id}','AlumnaController@edit')->name('modificardatospersonales');
+    Route::get('editardatospersonales/{id}','AlumnaController@edit')->name('editardatospersonales');
     Route::post('actualizardatospersonales/{idAlumna}','AlumnaController@update')->name('actualizardatospersonales');
 });
 

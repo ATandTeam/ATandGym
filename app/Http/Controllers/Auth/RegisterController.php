@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'nombre' => 'required|alpha',
             'apellido_paterno' => 'required|alpha',            
             'email' => 'required|email',
+            'fecha_nacimiento' => 'required|date_format:d/m/Y',
             'direccion' => 'required|string',
             'telefono' => 'required|digits:10',
             'ciudad' => 'required|string',
@@ -92,7 +93,8 @@ class RegisterController extends Controller
                 $alumna->aMaterno = $data['apellido_materno'];
                 $alumna->direccion = $data['direccion'];
                 $alumna->telefono = $data['telefono'];
-                $alumna->fechaNacimiento = $data['fecha_nacimiento'];
+                $alumna->fechaNacimiento = date('Y/m/d',strtotime(str_replace('/','-', $data['fecha_nacimiento'])));
+                //$data['fecha_nacimiento'];
                 $alumna->colonia= $data['ciudad'];
                 $alumna->estado= $data['estado'];
                 $alumna->profesion= $data['profesion'];

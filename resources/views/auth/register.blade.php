@@ -107,7 +107,7 @@
                             <label for="telefono" class="col-md-4 col-form-label text-md-right">Teléfono</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="text" class="form-control" name="telefono" 
+                                <input id="telefono" type="text" class="form-control telefono" name="telefono" 
                                 value="{{old('telefono')}}" required>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                             <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">Fecha de nacimiento</label>
 
                             <div class="col-md-6">
-                                <input id="fecha_nacimiento" type="text" class="form-control" name="fecha_nacimiento"
+                                <input id="fecha_nacimiento" type="text" class="form-control fecha " name="fecha_nacimiento"
                                 value="{{ old('fecha_nacimiento') }}" required>
                             </div>
                         </div>

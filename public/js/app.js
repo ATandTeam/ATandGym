@@ -39,7 +39,7 @@ window.addEventListener('load', function() {
 
 $(document).ready(function() {
     //http://igorescobar.github.io/jQuery-Mask-Plugin/docs.html
-    $(".fecha").attr("placeholder", "dd/mm/yyy");
+    $(".fecha").attr("placeholder", "dd/mm/aaaa");
     $(".fecha").mask('00/00/0000');
     //Para manejar fechas de nacimiento. (Sin horas, minutos ni seg.)
 
@@ -49,8 +49,8 @@ $(document).ready(function() {
     $(".cupo").attr("placeholder", "88");
     $(".cupo").mask('00');
 
-    $(".telefono").attr("placeholder","(888) 888 88 88");
-    $(".telefono").mask('(000) 000 00 00');
+    $(".telefono").attr("placeholder","8888888888");
+    $(".telefono").mask('0000000000');
 
 
 });

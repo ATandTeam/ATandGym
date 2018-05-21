@@ -66,7 +66,7 @@ class AlumnaController extends Controller
     public function edit($idAlumna)
     {
         $alumna = Alumna::find($idAlumna);        
-        return view('alumnas.modificar_datos_personales_IH',['alumna'=>$alumna]);
+        return view('alumnas.editar_datos_personales_IH',['alumna'=>$alumna]);
     }
 
     /**
