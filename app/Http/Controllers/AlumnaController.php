@@ -54,7 +54,7 @@ class AlumnaController extends Controller
     {
         $usuario = User::find($idUsuario);
         $alumna = Alumna::where('id','=',$usuario->alumna_id)->first();
-        return view ('alumnas.mostrar_IH',['alumna' => $alumna,'usuario'=>$usuario]);
+        return view ('alumnas.mostrar_datos_personales_IH',['alumna' => $alumna,'usuario'=>$usuario]);
     }
 
     /**
@@ -65,9 +65,8 @@ class AlumnaController extends Controller
      */
     public function edit($idAlumna)
     {
-        $alumna = Alumna::find($idAlumna);
-        $usuario = User::where('id','=',$alumna->user_id)->first();
-        return view('alumnas.modificar_datos_personales_IH',['alumna'=>$alumna,'usuario'=>$usuario]);
+        $alumna = Alumna::find($idAlumna);        
+        return view('alumnas.modificar_datos_personales_IH',['alumna'=>$alumna]);
     }
 
     /**

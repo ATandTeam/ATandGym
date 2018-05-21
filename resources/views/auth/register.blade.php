@@ -22,7 +22,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">Usuario</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
+                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback">
@@ -58,7 +58,7 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>
+                                <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required >
 
                                 @if ($errors->has('nombre'))
                                     <span class="invalid-feedback">

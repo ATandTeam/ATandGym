@@ -34,7 +34,7 @@
                             @else
                                 <h5 class="card-title">Datos personales</h5>
                                 <p class="card-text">Consulta y gestiona tus datos personales.</p>
-                                <a href="#" class="btn btn-primary">Ver datos personales</a>
+                                <a href="{{route('datospersonales',Auth::user()->id)}}" class="btn btn-primary">Ver datos personales</a>
                             @endif
                         </div>
                     </div>
