@@ -159,7 +159,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ route('welcome') }}" class="btn btn-primary"> Regresar</a>
+                                <a href="{{ route('welcome') }}" class="btn btn-secondary"> Regresar</a>
                                 <button type="submit" class="btn btn-primary">
                                     Registrar
                                 </button>

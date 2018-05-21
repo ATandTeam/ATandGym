@@ -111,7 +111,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">    
-                                    <a href="{{ route('home') }}" class="btn btn-primary">Regresar</a>                          
+                                    <a href="{{ route('home') }}" class="btn btn-secondary">Regresar</a>                          
                                     <button type="submit" class="btn btn-primary">
                                         Editar
                                     </button>
@@ -123,4 +123,12 @@
             </div>
         </div>
     </div>
+    @section('js')
+        @if($exito)
+            <script>
+                swal("Hecho",'Datos actualizados!','success');
+            </script>
+        @endif
+    @endsection
+
 @endsection

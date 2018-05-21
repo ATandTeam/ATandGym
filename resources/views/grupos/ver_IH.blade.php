@@ -25,6 +25,9 @@
             </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-secondary" href="{{ route('home') }}">Regresar</a>
+    </div>
     @section('js')
         <script>
             function eliminar(id) {

@@ -82,8 +82,8 @@ class AlumnaController extends Controller
         $alumna = Alumna::find($idAlumna);
         $usuario = User::where('alumna_id','=',$idAlumna)->first();                              
         $request->validate([
-            'nombre' => 'required|min:2',            
-            'apellido_paterno' => 'required|string',                        
+            'nombre' => 'required|min:2|alpha',            
+            'apellido_paterno' => 'required|alpha',                        
             'direccion' => 'required|string',
             'telefono' => 'required|digits:10',
             'ciudad' => 'required|string',
@@ -104,11 +104,11 @@ class AlumnaController extends Controller
             $alumna->estado = $request->estado;
             $alumna->profesion = $request->profesion;                       
             $alumna->save();
-            DB::commit();                    
-            return $this->show($usuario->id);
+            DB::commit();  
+
+            return $this->show($usuario->id)->with('exito',true);
         }catch(\Exception $e){
-            DB::rollBack();
-            dd($e);             
+            DB::rollBack();            
             return $this->show($usuario->id);
         }                     
     }

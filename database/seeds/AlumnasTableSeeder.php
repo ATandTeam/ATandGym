@@ -11,19 +11,20 @@ class AlumnasTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i<10; $i++){
+        
             DB::table('alumnas')->insert([
-                "nombre" => str_random(10),
-                "aPaterno" => str_random(10),
-                "aMaterno" => str_random(10),
-                "direccion" => str_random(10),
-                "telefono" => '1234567890',
+                'id' => 1,
+                "nombre" => 'erika',
+                "aPaterno" => 'vargas',
+                "aMaterno" => 'alvarado',
+                "direccion" => 'benito juarez 226',
+                "telefono" => '4921210987',
                 "fechaNacimiento" => date('Y/m/d',strtotime(str_replace('/','-','10/02/1995'))),
-                "colonia" => str_random(10),
-                "ciudad" => str_random(10),
-                "estado" => str_random(10),
-                "profesion" => str_random(10),
+                "colonia" => 'privada las cumbres',
+                "ciudad" => 'guadalupe',
+                "estado" => 'zacatecas',
+                "profesion" => 'estudiante',
             ]);
-        }
+        
     }
 }
