@@ -68,14 +68,14 @@ class RegisterController extends Controller
         //Crear primero a una alumna, después crea a un usuario, y agregar id_alumna al usuario registrado
         
         $validator = Validator::make($data,[
-            'nombre' => 'requiered|min:2',
-            'apellido_paterno' => 'requiered|string',            
-            'email' => 'requiered|email',
-            'direccion' => 'requiered|string',
-            'telefono' => 'requiered|digits:10',
-            'ciudad' => 'requiered|string',
-            'estado' => 'requiered|string',
-            'profesion' => 'requiered|string'
+            'nombre' => 'required|min:2',
+            'apellido_paterno' => 'required|string',            
+            'email' => 'required|email',
+            'direccion' => 'required|string',
+            'telefono' => 'required|digits:10',
+            'ciudad' => 'required|string',
+            'estado' => 'required|string',
+            'profesion' => 'required|string'
         ]);
         
         if(!$validator->fails()){        
