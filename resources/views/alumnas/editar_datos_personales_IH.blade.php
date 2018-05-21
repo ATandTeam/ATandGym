@@ -103,7 +103,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <a href="{{ route(Auth::user()->id != 9999999 ? 'datospersonales' : 'home',Auth::user()->id != 9999999 ? Auth::user()->id : '') }}" class="btn btn-secondary">Regresar</a>                          
+                                    <a href="{{ route(Auth::user()->id != 9999999 ? 'datospersonales' : 'veralumnasinscritas',Auth::user()->id != 9999999 ? Auth::user()->id : '') }}" class="btn btn-secondary">Regresar</a>
                                     <button type="submit" class="btn btn-primary">
                                         Guardar cambios
                                     </button>

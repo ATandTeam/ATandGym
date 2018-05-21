@@ -2,7 +2,7 @@
 
 namespace atandteam\Http\Controllers;
 
-use atandteam\Antecedentes;
+use atandteam\Antecedente;
 use atandteam\Grupo;
 use atandteam\Inscripcion;
 use Illuminate\Http\Request;
@@ -94,6 +94,9 @@ class GrupoController extends Controller
     {
         $grupo = Grupo::find($id);
         $this->validar($request);
+        $grupoAMismaHora = Grupo::where('hora',$request->hora)->get()->count() > 0;
+        if ($grupoAMismaHora)
+            return back()->withErrors('Existe un grupo a la misma hora');
         $grupo->hora = $request->hora;
         $grupo->cupo = $request->cupo;        
         $grupo->save();
@@ -112,7 +115,7 @@ class GrupoController extends Controller
         $idsAlumnasDeGrupoAEliminar = Inscripcion::where('grupo_id',$id)->pluck('alumna_id')->all();
 
         // busca los antecedentes de las alumnas que estan en esos grupos
-        $antecedentesAEliminar = Antecedentes::whereIn('alumna_id',$idsAlumnasDeGrupoAEliminar)->get();
+        $antecedentesAEliminar = Antecedente::whereIn('alumna_id',$idsAlumnasDeGrupoAEliminar)->get();
 
         // borrar los antecedentes de las alumnas de esos grupos
         foreach ($antecedentesAEliminar as $antecedente)

@@ -4,7 +4,7 @@ namespace atandteam;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Antecedentes extends Model
+class Antecedente extends Model
 {
     protected $guarded = ['_token'];
 

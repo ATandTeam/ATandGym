@@ -11,7 +11,7 @@
                         <div class="card-body ">
                         @if($rol == null)
                             <h5 class="card-title">Inscríbete a un grupo</h5>
-                            <p class="card-text">Ahora solo falta que te inscribas a un grupo, una vez te acepte la administradora, podrás ver detaalles de tu grupo aquí.</p>
+                            <p class="card-text">Ahora solo falta que te inscribas a un grupo, una vez te acepte la administradora, podrás ver detalles de tu grupo aquí.</p>
                             <a href="{{route('inscripciones.index')}}" class="btn btn-primary">Inscribirme</a>
                             @elseif($rol == "admin")
                                 <h5 class="card-title">Solicitudes de inscripcion</h5>

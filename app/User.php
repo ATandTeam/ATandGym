@@ -36,7 +36,4 @@ class User extends Authenticatable
     public function alumna(){
         return $this->belongsTo(Alumna::class);
     }
-    public function administradora(){
-        return $this->belongsTo(Administradora::class);
-    }
 }

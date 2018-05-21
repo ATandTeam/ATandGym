@@ -7,11 +7,11 @@ use atandteam\Antecedentes_alumna;
 use atandteam\Grupo;
 use atandteam\Inscripcion;
 use Illuminate\Http\Request;
-use atandteam\antecedentes;
+use atandteam\Antecedente;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class InscripcionesController extends Controller
+class InscripcionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,7 +45,7 @@ class InscripcionesController extends Controller
     public function confirmarInscripciones()
     {
 
-            $inscripciones = Inscripcion::where('status','solicitado')->get();
+        $inscripciones = Inscripcion::where('status','solicitado')->get();
         $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
         return view('administradora.confirmar_IH',compact('inscripciones'));
     }
@@ -77,7 +77,7 @@ class InscripcionesController extends Controller
         ]);
         DB::beginTransaction();
         try{
-            Antecedentes::create(
+            Antecedente::create(
                 [
                 	'alumna_id' => Auth::user()->alumna->id,
                     'ejercicioAnterior' => $request->ejercicio_anterior,
@@ -89,8 +89,8 @@ class InscripcionesController extends Controller
                 ]
             )->save();
 
-            $antecedenteId = Antecedentes::all()->max('id');
-            // dd(Antecedentes::all()->max('id'));
+            $antecedenteId = Antecedente::all()->max('id');
+            // dd(Antecedente::all()->max('id'));
             // dd(Auth()->user()->alumna);
             // Antecedentes_alumna::create(
             //     [

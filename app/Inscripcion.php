@@ -10,7 +10,7 @@ class Inscripcion extends Model
     protected $fillable = ['alumna_id','grupo_id','fecha','status'];
 
     public function antecedente(){
-        return $this->belongsTo(Antecedentes::class,'alumna_id','alumna_id');
+        return $this->belongsTo(Antecedente::class,'alumna_id','alumna_id');
     }
 
     public function grupo(){

@@ -22,11 +22,11 @@ Route::middleware(['checkLogin'])->group(function () {
 
     //erika
     Route::delete('borraralumna/{alumna}','AlumnaController@destroy')->name('borraralumna');
-    Route::get('Antecedentes/grupo/{id}', 'inscripcionesController@guardarGrupo')->name('guardarGrupo');
-    Route::Resource('inscripciones', 'inscripcionesController'); // registra 6 rutas
-    Route::get('verantecedentes/{id}','InscripcionesController@verAntecedentes')->name('verAntecedentes');
-    Route::get('confirmarinscripciones','InscripcionesController@confirmarInscripciones')->name('confirmarInscripciones');
-    Route::post('cambiarestatus/{id}','InscripcionesController@cambiarStatus')->name('cambiarStatus');
+    Route::get('Antecedente/grupo/{id}', 'inscripcionController@guardarGrupo')->name('guardarGrupo');
+    Route::Resource('inscripciones', 'inscripcionController'); // registra 6 rutas
+    Route::get('verantecedentes/{id}','InscripcionController@verAntecedentes')->name('verAntecedentes');
+    Route::get('confirmarinscripciones','InscripcionController@confirmarInscripciones')->name('confirmarInscripciones');
+    Route::post('cambiarestatus/{id}','InscripcionController@cambiarStatus')->name('cambiarStatus');
     //Route::get('alumnas', 'AlumnaController@verAlumnas')->name('verAlumnas');
     //Route::get()
     Route::get('veralumnasinscritas','AlumnaController@index')->name('veralumnasinscritas');

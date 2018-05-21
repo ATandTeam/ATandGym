@@ -1,5 +1,5 @@
 @extends('templates.base')
-@section('titulo', 'Antecedentes')
+@section('titulo', 'Antecedente')
 @section('contenido')
     <div class="row">
         <div class="col col-2"></div>

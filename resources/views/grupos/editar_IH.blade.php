@@ -11,11 +11,11 @@
                 {{method_field('put')}}
                 <div class="form-group">
                     <label for="hora">Horario</label>
-                    <input type="text" class="form-control" id="hora" title="00:00 - 23:59" placeholder="HH:MM" value="{{old('hora',substr($grupo->hora,0,5))}}" required pattern="[0-2][0-9]:[0-5][0-9]" name="hora">
+                    <input type="text" class="form-control hora" id="hora" title="00:00 - 23:59" placeholder="HH:MM" value="{{old('hora',substr($grupo->hora,0,5))}}" required pattern="[0-2][0-9]:[0-5][0-9]" name="hora">
                 </div>
                 <div class="form-group">
                     <label for="cupo">Cupo</label>
-                    <input type="text" class="form-control" id="cupo" placeholder="00" value="{{old('cupo',$grupo->cupo)}}"  pattern="[0-9][0-9]" maxlength="2" size="2" title="00 - 99" required min="1" max="99" name="cupo">
+                    <input type="text" class="form-control cupo" id="cupo" placeholder="00" value="{{old('cupo',$grupo->cupo)}}"  pattern="[0-9][0-9]" maxlength="2" size="2" title="00 - 99" required min="1" max="99" name="cupo">
                 </div>
                 <br>
                 <a href="{{route('grupos.index')}}" class="btn btn-secondary">Cancelar</a>
@@ -25,7 +25,6 @@
     </div>
 @section('js')
     @if($errors->count() > 0)
-        {{'HOLA'}}
         @php
             $errores = '';
         @endphp
