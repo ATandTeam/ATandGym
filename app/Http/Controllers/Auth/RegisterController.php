@@ -49,8 +49,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
+        return Validator::make($data, [            
             'username' => 'required|string|max:20',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -65,33 +64,48 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \atandteam\User
      */
-    protected function create(array $data)
-    {
-        //TODO: Creación de una alumna.
-        $usuario = new User;
-        $alumna = new Alumna;
-        DB::beginTransaction();
-        try{
-            $usuario->username = $data['username'];
-            $usuario->email = $data['email'];
-            $usuario->password = Hash::make($data['password']);
-            $usuario->save();
-            $alumna->nombre = $data['name'];
-            $alumna->aPaterno = $data['apellido_paterno'];
-            $alumna->aMaterno = $data['apellido_materno'];
-            $alumna->direccion = $data['direccion'];
-            $alumna->telefono = $data['telefono'];
-            $alumna->fechaNacimiento = $data['fecha_nacimiento'];
-            $alumna->colonia= $data['ciudad'];
-            $alumna->estado= $data['estado'];
-            $alumna->profesion= $data['profesion'];
-            $alumna->ciudad= $data['ciudad'];
-            $alumna->user_id = $usuario->id;
-            $alumna->save();
-            DB::commit();
-        }catch (\Exception $e){
-            DB::rollBack();
+    protected function create(array $data){
+        //Crear primero a una alumna, después crea a un usuario, y agregar id_alumna al usuario registrado
+        
+        $validator = Validator::make($data,[
+            'nombre' => 'requiered|min:2',
+            'apellido_paterno' => 'requiered|string',            
+            'email' => 'requiered|email',
+            'direccion' => 'requiered|string',
+            'telefono' => 'requiered|digits:10',
+            'ciudad' => 'requiered|string',
+            'estado' => 'requiered|string',
+            'profesion' => 'requiered|string'
+        ]);
+        
+        if(!$validator->fails()){        
+            $usuario = new User;
+            $alumna = new Alumna;
+            DB::beginTransaction();
+            try{
+                $alumna->nombre = $data['nombre'];
+                $alumna->aPaterno = $data['apellido_paterno'];
+                $alumna->aMaterno = $data['apellido_materno'];
+                $alumna->direccion = $data['direccion'];
+                $alumna->telefono = $data['telefono'];
+                $alumna->fechaNacimiento = $data['fecha_nacimiento'];
+                $alumna->colonia= $data['ciudad'];
+                $alumna->estado= $data['estado'];
+                $alumna->profesion= $data['profesion'];
+                $alumna->ciudad= $data['ciudad'];            
+                $alumna->save();            
+                $usuario->username = $data['username'];
+                $usuario->email = $data['email'];
+                $usuario->password = Hash::make($data['password']);
+                $usuario->alumna_id = $alumna->id;            
+                $usuario->save();            
+                DB::commit();
+            }catch (\Exception $e){
+                DB::rollBack();
+            }
+            return $usuario;
+        }else{        
+            dd($validator->errors()->first());
         }
-        return $usuario;
     }
 }

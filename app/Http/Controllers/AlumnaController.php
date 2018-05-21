@@ -6,6 +6,7 @@ use DB;
 use atandteam\Alumna;
 use atandteam\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AlumnaController extends Controller
 {
@@ -49,8 +50,8 @@ class AlumnaController extends Controller
      */
     public function show($idUsuario)
     {
-        $alumna = Alumna::where('user_id','=',$idUsuario)->first();
-        $usuario = User::where('id','=',$alumna->user_id)->first();
+        $usuario = User::find($idUsuario);
+        $alumna = Alumna::where('id','=',$usuario->alumna_id)->first();
         return view ('alumnas.mostrar_IH',['alumna' => $alumna,'usuario'=>$usuario]);
     }
 
@@ -75,11 +76,23 @@ class AlumnaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Alumna $alumna,$idAlumna)
-    {
+    {        
+
         $alumna = Alumna::find($idAlumna);
+        $usuario = User::where('alumna_id','=',$idAlumna)->first();                              
+        $request->validate([
+            'nombre' => 'required|min:2',            
+            'apellido_paterno' => 'required|string',                        
+            'direccion' => 'required|string',
+            'telefono' => 'required|digits:10',
+            'ciudad' => 'required|string',
+            'estado' => 'required|string',
+            'profesion' => 'required|string'
+        ]);
+            
         DB::beginTransaction();
         try {
-            $alumna->nombre = $request->name;
+            $alumna->nombre = $request->nombre;
             $alumna->aPaterno = $request->apellido_paterno;
             $alumna->aMaterno = $request->apellido_materno;
             $alumna->direccion = $request->direccion;
@@ -88,16 +101,15 @@ class AlumnaController extends Controller
             $alumna->colonia = $request->colonia;
             $alumna->ciudad = $request->ciudad;
             $alumna->estado = $request->estado;
-            $alumna->profesion = $request->profesion;
+            $alumna->profesion = $request->profesion;                       
             $alumna->save();
-            DB::commit();
-            return $this->show($alumna->user_id);
+            DB::commit();                    
+            return $this->show($usuario->id);
         }catch(\Exception $e){
-
             DB::rollBack();
-            dd($e);
-            return $this->show($alumna->user_id);
-        }
+            dd($e);             
+            return $this->show($usuario->id);
+        }                     
     }
 
     /**

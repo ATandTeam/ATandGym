@@ -18,7 +18,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                                 <div class="col-md-6">
-                                    <input  id="name" type="text" class="form-control" name="name" value="{{$alumna->nombre}}" required>
+                                    <input  id="name" type="text" class="form-control" name="nombre" value="{{$alumna->nombre}}" required>
 
 
 
@@ -114,4 +114,20 @@
             </div>
         </div>
     </div>
+    @section('js')
+        @if($errors->count() > 0)
+            @php
+                $errores = '';
+            @endphp
+            @foreach($errors->all() as $error)
+                @php
+                    $errores.=$error.'\n';
+                @endphp
+            @endforeach
+            <script>
+                swal("Ups hay un problema :(",""+"{{$errores}}", "error");
+            </script>
+        @endif
+    @endsection
+
 @endsection
