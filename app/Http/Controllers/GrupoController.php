@@ -2,7 +2,9 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Antecedentes;
 use atandteam\Grupo;
+use atandteam\Inscripcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Validation\Rule;
@@ -106,6 +108,17 @@ class GrupoController extends Controller
      */
     public function destroy($id)
     {
+        // usca los id de las alumnas que pertenecen al grupo que va a eliminar la admin.
+        $idsAlumnasDeGrupoAEliminar = Inscripcion::where('grupo_id',$id)->pluck('alumna_id')->all();
+
+        // busca los antecedentes de las alumnas que estan en esos grupos
+        $antecedentesAEliminar = Antecedentes::whereIn('alumna_id',$idsAlumnasDeGrupoAEliminar)->get();
+
+        // borrar los antecedentes de las alumnas de esos grupos
+        foreach ($antecedentesAEliminar as $antecedente)
+            $antecedente->delete();
+
+        // borra el grupo
         Grupo::find($id)->delete();
         return redirect(route('grupos.index'));
     }
