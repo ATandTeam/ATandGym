@@ -37,7 +37,10 @@
                     <input value="{{old('problemas')}}" type="text" class="form-control" id="antecedentes"  name="problemas">
 
                 </div>
-                <input type="submit" value="Guardar" class="btn-primary btn">
+                <div class="d-flex justify-content-center">                    
+                    <a class="btn btn-secondary mr-2" href="javascript:history.back()" >Regresar</a>
+                    <input type="submit" value="Guardar" class="btn-primary btn">
+                </div>
             </form>
 
         </div>

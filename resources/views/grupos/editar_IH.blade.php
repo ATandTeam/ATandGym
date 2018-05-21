@@ -10,7 +10,7 @@
                 {{csrf_field()}}
                 {{method_field('put')}}
                 <div class="form-group">
-                    <label for="hora">Hora</label>
+                    <label for="hora">Horario</label>
                     <input type="text" class="form-control" id="hora" title="00:00 - 23:59" placeholder="HH:MM" value="{{old('hora',substr($grupo->hora,0,5))}}" required pattern="[0-2][0-9]:[0-5][0-9]" name="hora">
                 </div>
                 <div class="form-group">

@@ -44,7 +44,8 @@ class InscripcionesController extends Controller
 
     public function confirmarInscripciones()
     {
-        $inscripciones = Inscripcion::where('status','solicitado')->get();
+
+            $inscripciones = Inscripcion::where('status','solicitado')->get();
         $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
         return view('administradora.confirmar_IH',compact('inscripciones'));
     }
@@ -142,12 +143,20 @@ class InscripcionesController extends Controller
     }
 
     public function cambiarStatus($id)
-    {
+    {        
         $inscripcion = Inscripcion::find($id);
-        $inscripcion->status = 'aprobado';
-        $inscripcion->save();
-
-        return redirect(route('confirmarInscripciones'));
+        $grupo = Grupo::find($inscripcion->grupo_id);
+        $inscripciones = Inscripcion::where('grupo_id',$grupo->id)
+                                    ->where('status','aprobado');        
+        
+        if($inscripciones->count()<$grupo->cupo){
+            $inscripcion->status = 'aprobado';
+            $inscripcion->save();
+            return redirect(route('confirmarInscripciones'));
+        }        
+        $inscripciones = Inscripcion::where('status','solicitado')->get();                
+        
+        return view('administradora.confirmar_IH',compact('inscripciones'))->with('cupomaximo',true);
     }
 
     /**

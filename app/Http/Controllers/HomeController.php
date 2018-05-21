@@ -25,10 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userId = Auth::user()->id;
-        if ($userId != 9999999){      // si no es la administradora
-            $rol = Inscripcion::where('alumna_id',$userId)->first();
-            return view('home')->with('rol',$rol);
+        if (Auth::user()->id != 9999999){
+            $userId = Auth::user()->alumna->id;
+            if ($userId != 9999999){      // si no es la administradora
+                $rol = Inscripcion::where('alumna_id',$userId)->first();
+                
+                return view('home')->with('rol',$rol);
+            }
         }
         return view('home')->with('rol','admin');
     }

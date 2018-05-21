@@ -93,8 +93,7 @@ class GrupoController extends Controller
         $grupo = Grupo::find($id);
         $this->validar($request);
         $grupo->hora = $request->hora;
-        $grupo->cupo = $request->cupo;
-        $grupo->turno = $request->turno;
+        $grupo->cupo = $request->cupo;        
         $grupo->save();
         return redirect(route('grupos.index'));
     }

@@ -10,7 +10,7 @@
             <div class="col-sm-6">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5 class="card-title"><strong>hora: </strong>{{ substr($grupo->hora,0,5) }}</h5>
+                        <h5 class="card-title"><strong>Horario: </strong>{{ substr($grupo->hora,0,5) }} hrs</h5>
                         <p class="card-text"><strong>cupo: </strong> {{ $grupo->cupo }}</p>
 
                         <form action="{{route('grupos.destroy',$grupo->id)}}" method="post" id="frm-eliminar{{$grupo->id}}">

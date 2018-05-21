@@ -17,7 +17,7 @@
             <tr>
                 <td class="text-center">{{$inscripcion->antecedente->alumna->nombre}}</td>
                 <td class="text-center">{{substr($inscripcion->grupo->hora,0,5)}}</td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Editar datos</a></td>
+                <td class="text-center"><a href="{{ route('editardatospersonales',$inscripcion->antecedente->alumna->id) }}" class="btn btn-primary">Editar datos</a></td>
                 <td class="text-center">
                     <form action="{{route('borraralumna',$inscripcion->antecedente->alumna->id)}}" method="post" id="frm-eliminar{{$inscripcion->antecedente->alumna->id}}">
                         @csrf

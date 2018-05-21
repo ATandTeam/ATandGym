@@ -13,13 +13,22 @@
                             <h5 class="card-title">Inscríbete a un grupo</h5>
                             <p class="card-text">Ahora solo falta que te inscribas a un grupo, una vez te acepte la administradora, podrás ver detaalles de tu grupo aquí.</p>
                             <a href="{{route('inscripciones.index')}}" class="btn btn-primary">Inscribirme</a>
-                        @elseif($rol != 'admin')
-                            <h5 class="card-title">Preinscripción en progreso</h5>
-                            <p class="card-text">Genial!, Ahora solo falta que te apruebe la administradora, Sé paciente por favor.</p>
-                        @else
+                            @elseif($rol == "admin")
                                 <h5 class="card-title">Solicitudes de inscripcion</h5>
                                 <p class="card-text">Puedes ver las solicitudes de personas que están interesadas a asistir al gimnasio.</p>
                                 <a href="{{route('confirmarInscripciones')}}" class="btn btn-primary">Ver solicitudes</a>
+
+                        @elseif($rol->status == 'aprobado')
+                            <h5 class="card-title">Inscripcion aprobada</h5>
+                            <p class="card-text">Genial!, ya puedes ir a clases de lunes a viernes a las {{substr($rol->grupo->hora,0,5)}} horas</p>
+                            <div style="margin-bottom: 40px;">
+                            </div>
+                        @else
+
+                            <h5 class="card-title">Preinscripción en progreso</h5>
+                            <p class="card-text">Genial!, Ahora solo falta que te apruebe la administradora, Sé paciente por favor.</p>
+                            <div style="margin-bottom: 23px;">
+                            </div>
                         @endif
                         </div>
                     </div>

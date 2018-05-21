@@ -124,11 +124,11 @@
         </div>
     </div>
     @section('js')
-        @if($exito)
+        @isset ($exito)
             <script>
                 swal("Hecho",'Datos actualizados!','success');
             </script>
-        @endif
+        @endisset
     @endsection
 
 @endsection

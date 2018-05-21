@@ -1,4 +1,5 @@
 <br>
+<div style="margin-top: 250px"></div>
 <footer>
 	<div class="p-5" style="background-color: #6e0275;">
 		<div class="text-white text-center">
