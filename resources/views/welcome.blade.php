@@ -28,12 +28,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
-        <div  class="form-group row">
-            @if(Auth::check())
-                <a class="btn btn-success" href="{{route('datospersonales',Auth::user()->id)}}">Ver datos personales</a>
-            @endif
-        </div>
+        </div>        
         @if($errors->count() > 0)
     @section('js')
         @php
