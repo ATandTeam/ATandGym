@@ -15,9 +15,6 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-
-
-
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">Usuario</label>
 
@@ -162,7 +159,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="" class="btn btn-primary"> Regresar (pendiente)</a>
+                                <a href="{{ route('welcome') }}" class="btn btn-primary"> Regresar</a>
                                 <button type="submit" class="btn btn-primary">
                                     Registrar
                                 </button>
