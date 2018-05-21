@@ -8,8 +8,7 @@
         <tr>
             <th class="text-center" scope="col">Nombre</th>
             <th class="text-center" scope="col">Grupo</th>
-            <th class="text-center" scope="col">Ver datos</th>
-            <th class="text-center" scope="col">Editar datos</th>
+            <th class="text-center" scope="col">Editar datos personales</th>
             <th class="text-center" scope="col">Borrar alumna</th>
         </tr>
         </thead>
@@ -18,8 +17,7 @@
             <tr>
                 <td class="text-center">{{$inscripcion->antecedente->alumna->nombre}}</td>
                 <td class="text-center">{{substr($inscripcion->grupo->hora,0,5)}}</td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Datos</a></td>
-                <td class="text-center"><a href="#" class="btn btn-primary">Editar alumna</a></td>
+                <td class="text-center"><a href="#" class="btn btn-primary">Editar datos</a></td>
                 <td class="text-center">
                     <form action="{{route('borraralumna',$inscripcion->antecedente->alumna->id)}}" method="post" id="frm-eliminar{{$inscripcion->antecedente->alumna->id}}">
                         @csrf
@@ -31,6 +29,9 @@
         @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-secondary" href="{{route('home')}}">Regresar</a>
+    </div>
 @section('js')
     <script>
         function eliminar(id) {

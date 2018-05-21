@@ -28,7 +28,7 @@
     </tbody>
 </table>
     <div class="d-flex justify-content-center">
-        <a style="font-size: 36px" class="text-dark" href="{{route('home')}}"><i class="fas fa-arrow-circle-left"> Volver</i></a>
+        <a class="btn btn-secondary" href="{{route('home')}}">Regresar</a>
     </div>
 @endsection
 

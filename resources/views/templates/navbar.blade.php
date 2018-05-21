@@ -1,7 +1,7 @@
 <header class="clearfix">
     <div class="container">
 		<div class="header-left">
-			<h1><a href="{{ route('welcome') }}" style="text-decoration: none;">Zona fitness</a></h1>
+			<h1>Zona fitness</h1>
 		</div>
 		<div class="header-right">
 			<label for="open">

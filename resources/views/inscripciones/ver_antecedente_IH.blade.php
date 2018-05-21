@@ -38,7 +38,7 @@
 
                 </div>
                 <div class="d-flex align-content-center">
-                    <a class="btn btn-secondary" href="{{route('confirmarInscripciones')}}">Volver</a>
+                    <a class="btn btn-secondary" href="{{route('confirmarInscripciones')}}">Regresar</a>
                 </div>
             </form>
 
