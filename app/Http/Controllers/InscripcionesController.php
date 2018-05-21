@@ -2,6 +2,7 @@
 
 namespace atandteam\Http\Controllers;
 
+use atandteam\Alumna;
 use atandteam\Antecedentes_alumna;
 use atandteam\Grupo;
 use atandteam\Inscripcion;
@@ -28,6 +29,24 @@ class InscripcionesController extends Controller
     {
         session()->put('grupo', $id);
         return view('inscripciones.antecedentes_IH');
+    }
+
+    public function verAntecedentes($id)
+    {
+        $alumna = Alumna::find($id);
+        $antecedente = $alumna->antecedente;
+//        dd($antecedente);
+        return view('inscripciones.ver_antecedente_IH',[
+            'antecedente' => $antecedente,
+            'nombreAlumna' => $alumna->nombre
+        ]);
+    }
+
+    public function confirmarInscripciones()
+    {
+        $inscripciones = Inscripcion::where('status','solicitado')->get();
+        $inscripciones = $inscripciones->load(['grupo','antecedente']); // optimizacion de relaciones
+        return view('administradora.confirmar_IH',compact('inscripciones'));
     }
 
     /**
@@ -57,7 +76,6 @@ class InscripcionesController extends Controller
         ]);
         DB::beginTransaction();
         try{
-            //crear antecedentes
             Antecedentes::create(
                 [
                 	'alumna_id' => Auth::user()->alumna->id,
@@ -123,6 +141,15 @@ class InscripcionesController extends Controller
         //
     }
 
+    public function cambiarStatus($id)
+    {
+        $inscripcion = Inscripcion::find($id);
+        $inscripcion->status = 'aprobado';
+        $inscripcion->save();
+
+        return redirect(route('confirmarInscripciones'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -143,6 +170,5 @@ class InscripcionesController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 }

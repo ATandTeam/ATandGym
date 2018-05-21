@@ -21,8 +21,8 @@
                 </form>
             </div>
         </div>
-@section('js')
-        @if($errors->count() > 0)
+    @if($errors->count() > 0)
+    @section('js')
             @php
                 $errores = '';
             @endphp
@@ -34,6 +34,6 @@
             <script>
                 swal("Ups hay un problema :(",""+"{{$errores}}", "error");
             </script>
-        @endif
     @endsection
+    @endif
 @endsection

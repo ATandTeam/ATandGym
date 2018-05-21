@@ -1,38 +1,36 @@
 @extends('templates.base')
-@section('titulo', 'Preinscripción')
+@section('titulo', 'Confirmar Inscripciones')
 @section('contenido')
-  <h1>Agregar alumna en grupo</h1>
-{{--administradora confirma las preinscripciones de la alumna--}}
-  <table class="table table-hover">
-      <thead>
-      <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-      </tr>
-      <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-      </tr>
-      <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-      </tr>
-      </tbody>
-  </table>
+
+    <h1>Inscripciones solicitadas </h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="text-center" scope="col">Nombre</th>
+            <th class="text-center" scope="col">Grupo</th>
+            <th class="text-center" scope="col">antecedentes</th>
+            <th class="text-center" scope="col">Aprobar</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($inscripciones as $inscripcion)
+            <tr>
+                <td class="text-center">{{$inscripcion->antecedente->alumna->nombre}}</td>
+                <td class="text-center">{{substr($inscripcion->grupo->hora,0,5)}}</td>
+                <td class="text-center"><a href="{{route('verAntecedentes',$inscripcion->antecedente->alumna->id)}}" class="btn btn-primary">Ver</a></td>
+                <td class="text-center">
+                    <form action="{{route('cambiarStatus',$inscripcion->id)}}" method="post">
+                        @csrf
+                        <input class="btn btn-primary" type="submit" value="Aprobar">
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 
 
 
-    @endsection
+@endsection
+
