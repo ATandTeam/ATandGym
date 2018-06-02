@@ -86,6 +86,7 @@ class AlumnaController extends Controller
             'apellido_paterno' => 'required|alpha',                        
             'direccion' => 'required|string',
             'telefono' => 'required|digits:10',
+            'fecha_nacimiento' => 'date_format:d/m/Y',
             'ciudad' => 'required|string',
             'estado' => 'required|string',
             'profesion' => 'required|string'
@@ -98,7 +99,7 @@ class AlumnaController extends Controller
             $alumna->aMaterno = $request->apellido_materno;
             $alumna->direccion = $request->direccion;
             $alumna->telefono = $request->telefono;
-            $alumna->fechaNacimiento = $request->fecha_nacimiento;
+            $alumna->fechaNacimiento = date('Y/m/d',strtotime(str_replace('/','-', $request->fecha_nacimiento)));
             $alumna->colonia = $request->colonia;
             $alumna->ciudad = $request->ciudad;
             $alumna->estado = $request->estado;
@@ -122,6 +123,6 @@ class AlumnaController extends Controller
     public function destroy(Alumna $alumna)
     {
         $alumna->delete();
-        return redirect(route('veralumnasinscritas'));
+        return redirect(route('home'));
     }
 }

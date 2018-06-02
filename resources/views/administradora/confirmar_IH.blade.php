@@ -8,9 +8,8 @@
         <tr>
             <th class="text-center" scope="col">Nombre</th>
             <th class="text-center" scope="col">Grupo</th>
-            <th class="text-center" scope="col">antecedentes</th>
+            <th class="text-center" scope="col">Antecedentes</th>
             <th class="text-center" scope="col">Aprobar</th>
-
         </tr>
         </thead>
         <tbody>

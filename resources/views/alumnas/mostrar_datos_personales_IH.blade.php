@@ -66,10 +66,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-right">Cumpleaños</label>
+                                <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-right">Fecha de nacimiento</label>
 
                                 <div class="col-md-6">
-                                    <input readonly id="fechaNacimiento" type="text" class="form-control " name="fechaNacimiento" value="{{$alumna->fechaNacimiento}}" required>
+                                    <input readonly id="fechaNacimiento" type="text" class="form-control " name="fechaNacimiento" value="{{date('d/m/Y',strtotime($alumna->fechaNacimiento))}}" required>
                                 </div>
                             </div>
 

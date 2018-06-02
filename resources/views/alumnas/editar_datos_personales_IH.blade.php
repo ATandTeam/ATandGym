@@ -58,10 +58,9 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">Cumpleaños</label>
-
+                                <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">Fecha de nacimiento</label>
                                 <div class="col-md-6">
-                                    <input  id="fecha_nacimiento" type="text" class="form-control" name="fecha_nacimiento" value="{{old('fecha_nacimiento',$alumna->fechaNacimiento)}}" required>
+                                    <input  id="fecha_nacimiento" type="text" class="form-control fecha" name="fecha_nacimiento" value="{{old('fecha_nacimiento',date('d/m/Y',strtotime($alumna->fechaNacimiento)))}}" required>
                                 </div>
                             </div>
 

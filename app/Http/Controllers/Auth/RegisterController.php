@@ -49,13 +49,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [            
-            'username' => 'required|string|max:20',
+        return Validator::make($data, [
+            'username' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'nombre' => 'required|alpha',
-            'apellido_paterno' => 'required|alpha',            
-            'email' => 'required|email',
+            'apellido_paterno' => 'required|alpha',
             'fecha_nacimiento' => 'required|date_format:d/m/Y',
             'direccion' => 'required|string',
             'telefono' => 'required|digits:10',
@@ -112,12 +111,10 @@ class RegisterController extends Controller
             }catch (\Exception $e){
                 //En caso de que exista un error, se hace un rollback.
                 DB::rollBack();
+                //En caso de que exista un error en la validación se muestran los errores.
+                return redirect(route('register'));
             }
             //Se regresa a un usuario, pues de donde se llama el método se espera que se regrese a un usuario.
             return $usuario;
-        
-            //En caso de que exista un error en la validación se muestran los errores.
-            return redirect(route('register'));
-        
     }
 }

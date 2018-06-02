@@ -16,7 +16,7 @@
                         <input type="text" class="form-control cupo" id="cupo"  value="{{old('cupo')}}"  pattern="[0-9][0-9]" maxlength="2" size="2" title="00 - 99" required min="1" max="99" name="cupo">
                     </div>
                     <br>
-                    <a href="{{route('grupos.index')}}" class="btn btn-success">Cancelar</a>
+                    <a href="{{route('grupos.index')}}" class="btn btn-secondary">Cancelar</a>
                     <input type="submit" value="Guardar" class="btn btn-primary">
                 </form>
             </div>

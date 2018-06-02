@@ -68,12 +68,12 @@ class InscripcionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ejercicio_anterior' => 'required|min:2',
-            'porque_ejercicio'   => 'required|min:2',
-            'tiene_lesion'   => 'required|min:2',
-            'alguna_dieta'   => 'required|min:2',
-            'toma_agua'  => 'required|min:2',
-            'problemas' => 'required|min:2'
+            'ejercicio_anterior' => 'required|min:2|max:1023',
+            'porque_ejercicio'   => 'required|min:2|max:1023',
+            'tiene_lesion'   => 'required|min:2|max:1023',
+            'alguna_dieta'   => 'required|min:2|max:1023',
+            'toma_agua'  => 'required|min:2|max:50',
+            'problemas' => 'required|min:2|max:1023'
         ]);
         DB::beginTransaction();
         try{
@@ -113,7 +113,6 @@ class InscripcionController extends Controller
 
         }
         catch (\Exception $e){
-            dd($e->getMessage());
             DB::rollBack();
         }
 
@@ -179,5 +178,17 @@ class InscripcionController extends Controller
      */
     public function destroy($id)
     {
+        DB::beginTransaction();
+        try{
+            $inscripcion = Inscripcion::find($id);
+            $inscripcion->antecedente->delete();
+            $inscripcion->delete();
+            DB::commit();
+            return redirect(route('veralumnasinscritas'));
+        }
+        catch (\Exception $e){
+            DB::rollBack();
+            dd($e->getMessage());
+        }
     }
 }
